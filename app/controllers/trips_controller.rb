@@ -1,8 +1,13 @@
 class TripsController < ApplicationController
 
+    before do 
+      require_login 
+    end 
+
   get '/trips' do 
-    @trips = Trip.all
-    erb :'trips/index'
+    @user = current_user
+     @trips = current_user.trips
+      erb :'trips/index'
   end 
 
   get '/trips/new' do 

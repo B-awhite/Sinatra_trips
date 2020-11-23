@@ -15,6 +15,17 @@
   </head>
   <body>
     <div class="wrapper">
+     <div>
+      <% if logged_in? %>
+          <form method="post" action="/logout">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% else %> 
+          <div><a href="/signup">SignUp</a></div> 
+          <div><a href="/login">LogIn</a></div>
+        <% end %>
+        </nav>
 
         <%= yield %>
 
