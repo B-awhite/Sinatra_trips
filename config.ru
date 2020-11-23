@@ -9,3 +9,4 @@ end
 use SessionsController
 run ApplicationController
 use TripsController 
+use UsersController
