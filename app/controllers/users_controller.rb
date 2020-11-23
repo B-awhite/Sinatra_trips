@@ -1,17 +1,17 @@
 class UsersController < ApplicationController 
 
-    get "/signup" do 
-        erb :"/users/signup"
+    get '/signup' do 
+        erb :"/session/signup"
       end 
       
-      post "/signup" do 
+      post '/signup' do 
          user = User.create(params)
          if user.save
             session[:user_id] = user.id
             redirect "/trips"
          else
              @error = "Can't be blank"
-             erb :"/users/signup"
+             erb :"/session/signup"
          end
       end
 

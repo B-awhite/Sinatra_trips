@@ -21,10 +21,10 @@ class ApplicationController < Sinatra::Base
     User.find_by_id(session[:user_id])
   end 
   
-  def require_login
-    unless logged_in?
-      redirect "/session/login"
-    end 
-  end 
+  # def require_login
+  #   unless logged_in?
+  #     redirect "/"
+  #   end 
+  # end 
 
 end

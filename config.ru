@@ -7,6 +7,6 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use SessionsController
-run ApplicationController
 use TripsController 
 use UsersController
+run ApplicationController
