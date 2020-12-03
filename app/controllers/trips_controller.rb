@@ -6,8 +6,14 @@ class TripsController < ApplicationController
 
   get '/trips' do 
     @user = current_user
+    if logged_in? && @user
+    # binding.pry
+    # @user = current_user
      @trips = current_user.trips
       erb :"/trips/index"
+    else 
+      redirect "/login"
+    end 
   end 
 
   get '/trips/new' do 
@@ -50,8 +56,12 @@ class TripsController < ApplicationController
 
   delete '/trips/:id' do 
     search_for_trip
-    @trip.destroy
-    redirect "/trips"
+    if @trip && authorized?
+     @trip.destroy
+     redirect "/trips"
+    else 
+      redirect "/trips"
+    end 
   end
 
   private 
