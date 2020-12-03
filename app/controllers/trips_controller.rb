@@ -1,8 +1,8 @@
 class TripsController < ApplicationController
 
-    # before do 
-    #   require_login 
-    # end 
+  # before do 
+  #   require_login 
+  # end
 
   get '/trips' do 
     @user = current_user
@@ -39,8 +39,13 @@ class TripsController < ApplicationController
 
   patch '/trips/:id' do 
     search_for_trip
-    @trip.update(params[:trip])
-    redirect "/trips/#{trip.id}"
+    if @trip && authorized?
+     @trip.update(params[:trip])
+     redirect "/trips/#{@trip.id}"
+    else 
+      @error = "You cant do that"
+      redirect "/trips/:id/edit"
+    end 
   end 
 
   delete '/trips/:id' do 

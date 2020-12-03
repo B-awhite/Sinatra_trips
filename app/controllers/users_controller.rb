@@ -1,7 +1,7 @@
 class UsersController < ApplicationController 
 
     get '/signup' do 
-        erb :"/session/signup"
+        erb :"/users/signup"
       end 
       
       post '/signup' do 
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
             redirect "/trips"
          else
              @error = "Can't be blank"
-             erb :"/session/signup"
+             erb :"/users/signup"
          end
       end
 

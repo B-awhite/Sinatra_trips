@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
   
   # def require_login
   #   unless logged_in?
-  #     redirect "/"
+  #     redirect "/users/login"
   #   end 
   # end 
 
