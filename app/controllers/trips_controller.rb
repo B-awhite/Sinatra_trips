@@ -4,6 +4,11 @@ class TripsController < ApplicationController
   #   require_login 
   # end
 
+  get "/trips/all" do
+    @trips = Trip.all 
+    erb :"/trips/all"
+  end 
+
   get '/trips' do 
     @user = current_user
     if logged_in? && @user
@@ -22,7 +27,11 @@ class TripsController < ApplicationController
 
   post '/trips' do 
     trip = current_user.trips.create(params[:trip])
-    redirect "/trips/#{trip.id}"
+    if trip.save
+      redirect "/trips/#{trip.id}"
+    else 
+      redirect "/trips/new"
+    end 
   end
 
   get '/trips/:id' do 
@@ -49,8 +58,7 @@ class TripsController < ApplicationController
      @trip.update(params[:trip])
      redirect "/trips/#{@trip.id}"
     else 
-      @error = "You cant do that"
-      redirect "/trips/:id/edit"
+      redirect "/trips"
     end 
   end 
 
@@ -80,3 +88,6 @@ class TripsController < ApplicationController
   
 
 end 
+
+# create a route called trips/all and it will show all trips, then show who's going there
+
